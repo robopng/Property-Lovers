@@ -1,0 +1,4 @@
+"Please format the dialogue like this", anything past the comma is a comment
+"This file will be processed by regex to single out the comma past the quotes", and to replace double quotes inside the string
+"Ensure all of the strings are correct before finalizing", because they will be used as-is in the game
+"This file will be left unencoded"
