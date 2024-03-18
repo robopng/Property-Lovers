@@ -20,3 +20,39 @@
  *    an index/encode for flow control)
  *  - Anything else you think of that needs implementation
  */
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include "sim_dialogScroll.hpp"
+
+DialogController::DialogController(std::string path){
+    std::ifstream file;
+    file.open(path);
+    if (!file.is_open()) throw std::invalid_argument("Cannot read file!");
+
+    std::string line;
+    while(file >> line){
+        // put something here to get it to remove everything after the end of the string
+        dialogReader.fullText.push_back(line);
+    }
+
+    file.close();
+}
+
+DialogController::~DialogController(){
+    // don't worry about this because for now I don't know either
+}
+
+std::string DialogController::next(){
+    return dialogReader.fullText.at(dialogReader.currentLine++);
+}
+
+std::string DialogController::jump(){
+    // given a user input option, follow the dialog flow chart (we can talk about how to
+    // implement a system for this with modular math, maybe? Or you can do what you like)
+}
+
+std::vector<std::string> DialogController::options(){
+    // return the three dialog options available to the player at the moment
+}
