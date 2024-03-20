@@ -1,0 +1,9 @@
+"This is the first option!" [(4,"Option 1"),(7,"Option 2"),(9, "Option 3")], the idea here is that the numbers tell us which line to jump to and the quotes next to those numbers are the options to display.
+
+
+"If you made it here and picked Option 1, it's good!"
+
+
+"If you made it here and picked Option 2, it's good!"
+
+"If you made it here and picked Option 3, it's good!"
