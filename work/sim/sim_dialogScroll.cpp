@@ -73,11 +73,9 @@ std::string DialogController::jump(int choice){  // 0, 1, 2
 
 std::vector<std::string> DialogController::options(){
     // return the three dialog options available to the player at the moment
-
     // Parse the text of fullText-currentLine to pull out the text of the options next to the numbers.
     // Create a vector from them.
     // Return that vector
     //
     std::vector<std::string> optionsList;
-
 }
