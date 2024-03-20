@@ -38,6 +38,7 @@ DialogController::DialogController(std::string path){
     }
 
     file.close();
+    dialogReader.currentLine = 0;
 }
 
 DialogController::~DialogController(){
@@ -48,11 +49,33 @@ std::string DialogController::next(){
     return dialogReader.fullText.at(dialogReader.currentLine++);
 }
 
-std::string DialogController::jump(){
+std::string DialogController::jump(int choice){  // 0, 1, 2
     // given a user input option, follow the dialog flow chart (we can talk about how to
     // implement a system for this with modular math, maybe? Or you can do what you like)
+    /* Is called with a user input
+    * Uses that input to find the proper next line of dialogue
+    * Skips a certain number of lines based on the integer passed in.
+    * return the line it lands at
+    */
+    // Determine the jump-to line given the choice 0,1,2
+    // Parse the currentline to pull out the new line value  "dialog text" [(9,"Hey there"),(10,"Hows it goin"),..]
+    // Use REGEX to get that:
+    // pattern = "\(([0-9]+),"  <- attempting a pattern to find the line numbers. Should return a match object with three entries
+    // need a find-all regex command that should return an array of matches. Let's assume the resulting array is called matches.
+    // The first element (matches[0]) in REGEX matching response is usually the full string.
+    // matches[1] would be the first choice ("9") -- choice 0
+    // matches[2] .... choice = 1 ("10")
+    string conversion = matches[choice + 1];
+    int newLine = stoi(conversion);
+    dialogReader.currentline = newLine;
+    return dialogReader.fullText.at(dialogReader.currentLine);
 }
 
 std::vector<std::string> DialogController::options(){
     // return the three dialog options available to the player at the moment
+    // Parse the text of fullText-currentLine to pull out the text of the options next to the numbers.
+    // Create a vector from them.
+    // Return that vector
+    //
+    std::vector<std::string> optionsList;
 }
