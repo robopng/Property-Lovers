@@ -30,6 +30,8 @@
 
 Showrunner::Showrunner(int date, sf::RenderWindow* window){
     // the number of the date will become relevant once we have more than one
+    // if you get Intellisense errors on push_back or the = signs, they are incorrect. ignore
+    // a value of type "SimRender *" cannot be assigned to an entity of type "SimRender *" <- nonsense
     dialog->controller = &DialogController("../../dialog/test_npc.txt", "../../dialog/text_player.txt");
     auto opt = dialog->controller->options();
     for each(auto x in dialog->controller->options()){
@@ -39,6 +41,7 @@ Showrunner::Showrunner(int date, sf::RenderWindow* window){
     dialog->npcRenderer = &SimRender(window);
     background = &SimRender(0, 0, "path/to/background", window);
     npc = &SimRender(0, 0, "../../art/DatingSimSprites/MainHouse.png", window);
+    // this b/c of ambiguity
     this->window = window;
     
     //temp values
@@ -47,11 +50,11 @@ Showrunner::Showrunner(int date, sf::RenderWindow* window){
     this->spriteX = 100;
     this->spriteY = 100;
 
-    //temp obj
-    this->dialog->mainHouseRenderer = new SimRender(spriteX, spriteY, "path/to/MainHouse.png", window)
-    //once backgrounds uploaded
-    // this->background = new SimRender(0, 0, "path/to/Neighborhood.png", window)
-    this->mainCharacter = new SimRender(0, 0, "path/to/mc.png", window)
+    // //temp obj
+    // this->dialog->mainHouseRenderer = new SimRender(spriteX, spriteY, "path/to/MainHouse.png", window);
+    // //once backgrounds uploaded
+    // // this->background = new SimRender(0, 0, "path/to/Neighborhood.png", window)
+    // this->mainCharacter = new SimRender(0, 0, "path/to/mc.png", window);
 }
 
 Showrunner::~Showrunner(){
@@ -64,11 +67,22 @@ Showrunner::~Showrunner(){
 }
 
 void Showrunner::start(){
+    /**
+     * @brief Process the core loop of the dating sim.
+     * Step through the relevant date's dialog flow tree one line at a time,
+     * awaiting player input (click) before proceeding to the next line. When
+     * npc is awaiting player response, process clicks on dialog buttons, then
+     * jump to the relevant dialog flow tree option.
+     */
+    // program should run thru entire date before yielding control
+    // if player closes to menu, quits window, etc. exception handling will occur in init
     while(dialog->controller->hasNext()){
         this->renderAll();
         sf::Event event;
 
+        // auto-progress possible but for now we will await click to do anything
         while(window->pollEvent(event)){
+            // player input not needed
             if (!dialog->controller->await()){
                 dialog->npcRenderer->setDialog(dialogX, dialogY, dialog->controller->next(), 0);
                 break;
@@ -80,26 +94,37 @@ void Showrunner::start(){
                     break;
                 }
             }
-
+            // pre-loading player options for the next input run
+            // when player selects an option the next set will automatically be loaded in dialog->controller
             auto options = dialog->controller->options();
             for(int i = 0; i < options.size(); i ++)
                 dialog->playerRenderer.at(i).setDialog(dialogX, dialogY, options.at(i), 0);
+            // until I verify this is not needed it will stay here for safety - liam
+            break;
         }
         window->clear();
     }
+    // date over; final render
     this->renderAll();
     // SFML bug?
     // sf::sleep(sf::Time(5));
+    // have a fade-out at the same time as this for effect
     Sleep(5000);
     window->clear();
-    this->end();
+    // this->end();
 }
 
 void Showrunner::end(){
-
+    /**
+     * @brief End the core loop of the dating sim, and deconstruct.
+     * Currently not in use
+     */
 }
 
 void Showrunner::renderAll(){
+    /**
+     * @brief Prepare all elements in the dating sim for display
+     */
     background->render();
     npc->render();
     dialog->npcRenderer->render();

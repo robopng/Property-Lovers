@@ -16,14 +16,15 @@ class Showrunner {
             std::vector<Listener> playerListener;
             SimRender* npcRenderer;
         } *dialog;
+        // currently unused
         struct button {
             SimRender* renderer;
             Listener* listener;
-        } *pastDialog, *menuReturn, *settingsReturn; // show past dialog, to menu, etc.
+        } *pastDialog, *menuReturn, *settingsReturn;
+
         sf::RenderWindow* window;
         SimRender* background;
         SimRender* npc;
-
         // Set coords for dialog
         int dialogX;
         int dialogY;
