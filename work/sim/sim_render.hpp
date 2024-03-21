@@ -12,21 +12,22 @@ using namespace sf;
 
 class SimRender {
     public: //x coord, y coord, file name, window, opacity, scale
+        SimRender(RenderWindow*);
         SimRender(int, int, std::string, RenderWindow*); // constructor
         ~SimRender(); // deconstructor
         void render();
-        void removeRender();
         void setOpacity(double);
         void setScale(double);
         void setCoordinates(int, int);
         void setInvisible(bool);
-        void showDialogue(int, int, std::string, int);
+        void showDialog();
+        void setDialog(int, int, std::string, int);
         // Renders NPC model during dating sim    
     private:
         Sprite sprite;
         RenderWindow* window;
         std::string fileName;
-        std::string dialogue;
+        Text text;
         int x;
         int y;
 };

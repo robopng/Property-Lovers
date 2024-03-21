@@ -33,8 +33,8 @@ Showrunner::Showrunner(int date, sf::RenderWindow* window){
     dialog->controller = &DialogController("../../dialog/test_npc.txt", "../../dialog/text_player.txt");
     auto opt = dialog->controller->options();
     for each(auto x in dialog->controller->options()){
-        dialog->playerRenderer.push_back(&SimRender::SimRender(0, 0, "dialog", window));
-        dialog->playerListener.push_back(&Listener::Listener());
+        dialog->playerRenderer.push_back(SimRender::SimRender(0, 0, "dialog", window));
+        dialog->playerListener.push_back(Listener::Listener());
     }
     dialog->npcRenderer = &SimRender(0, 0, "dialog", window);
     background = &SimRender(0, 0, "path/to/background", window);
@@ -58,29 +58,28 @@ void Showrunner::start(){
 
         while(window->pollEvent(event)){
             if (!dialog->controller->await()){
-                dialog->npcRenderer->content = dialog->controller->next();
+                dialog->npcRenderer->setDialog(0, 0, dialog->controller->next(), 0);
                 break;
             }
 
             for(int i = 0; i < dialog->playerListener.size(); i ++){
-                if (dialog->playerListener.at(i).isPressed()){
-                    dialog->npcRenderer->content = dialog->controller->jump(i);
+                if (dialog->playerListener.at(i).checkEvent(event)){
+                    dialog->npcRenderer->setDialog(0, 0, dialog->controller->jump(i), 0);
                     break;
                 }
             }
 
             auto options = dialog->controller->options();
-            for(int i = 0; i < options.length(); i ++)
-                dialog->playerRenderer.at(i).content = options.at(i);
+            for(int i = 0; i < options.size(); i ++)
+                dialog->playerRenderer.at(i).setDialog(0, 0, options.at(i), 0);
         }
-
-        this->derenderAll();
+        window->clear();
     }
     this->renderAll();
     // SFML bug?
     // sf::sleep(sf::Time(5));
     Sleep(5000);
-    this->derenderAll();
+    window->clear();
     this->end();
 }
 
@@ -93,14 +92,6 @@ void Showrunner::renderAll(){
     npc->render();
     dialog->npcRenderer->render();
     for each(auto element in dialog->playerRenderer)
-        element->render();
+        element.showDialog();
     window->display();
-}
-
-void Showrunner::derenderAll(){
-    background->removeRender();
-    npc->removeRender();
-    dialog->npcRenderer->removeRender();
-    for each(auto element in dialog->playerRenderer)
-        element->removeRender();
 }

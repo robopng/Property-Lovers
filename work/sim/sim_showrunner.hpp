@@ -10,11 +10,10 @@ class Showrunner {
         void end();
     private:
         void renderAll();
-        void derenderAll();
         struct dialogBox {
             DialogController* controller;
-            std::vector<SimRender*> playerRenderer;
-            std::vector<Listener*> playerListener;
+            std::vector<SimRender> playerRenderer;
+            std::vector<Listener> playerListener;
             SimRender* npcRenderer;
         } *dialog;
         struct button {

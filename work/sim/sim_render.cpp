@@ -27,15 +27,15 @@ SimRender::SimRender(int x, int y, std::string FileName, RenderWindow* window) {
     setCoordinates(x,y);
     setScale(1); //temporarily just 1
 }
+SimRender::SimRender(RenderWindow* window){
+    this->window = window;
+}
 SimRender::~SimRender() {
     //not neededd as of 3/20
 }
 
 void SimRender::render() {
     window->draw(sprite);
-}
-void SimRender::removeRender(){
-    window->clear();
 }
 void SimRender::setOpacity(double opacity) {
     //not needed as of 3/20
@@ -49,10 +49,12 @@ void SimRender::setCoordinates(int x, int y) {
 void SimRender::setInvisible(bool isInvisible) {
     //not needed as of 3/20
 }
-void showDialogue(int x, int y, std::string dialogue, int size) {
-    sf::Text text;
+void SimRender::setDialog(int x, int y, std::string dialogue, int size){
     text.setString(dialogue);
     text.setCharacterSize(size);
     text.setFillColor(Color::Black);
     text.setPosition(x,y);
+}
+void SimRender::showDialog() {
+    window->draw(text);
 }
