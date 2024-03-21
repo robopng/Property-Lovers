@@ -3,19 +3,24 @@
 
 class Showrunner {
     public:
-        Showrunner();
+        Showrunner(int);
         ~Showrunner();
         void start();
         void end();
     private:
+        void renderAll();
+        void derenderAll();
         struct dialogBox {
-            // render::element
-            // listener::element
-            std::vector<std::string> options;
-        } playerDialog, dialogHistory;
+            // render::element npcRender
+            // std::vector<render::element> playerRender
+            // std::vector<listener::element> listener
+            DialogController controller;
+        } *dialog;
         struct button {
-            // render::element
-            // listener::element
-        }; // show past dialog, to menu, etc.
+            // render::element renderer
+            // listener::element listener
+        } *pastDialog, *menuReturn, *settingsReturn; // show past dialog, to menu, etc.
         // render::element background;
+        // render::element house;
+        int date; // which date we're on
 };
