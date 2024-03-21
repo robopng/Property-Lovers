@@ -33,10 +33,10 @@ Showrunner::Showrunner(int date, sf::RenderWindow* window){
     dialog->controller = &DialogController("../../dialog/test_npc.txt", "../../dialog/text_player.txt");
     auto opt = dialog->controller->options();
     for each(auto x in dialog->controller->options()){
-        dialog->playerRenderer.push_back(SimRender::SimRender(0, 0, "dialog", window));
+        dialog->playerRenderer.push_back(SimRender::SimRender(window));
         dialog->playerListener.push_back(Listener::Listener());
     }
-    dialog->npcRenderer = &SimRender(0, 0, "dialog", window);
+    dialog->npcRenderer = &SimRender(window);
     background = &SimRender(0, 0, "path/to/background", window);
     npc = &SimRender(0, 0, "../../art/DatingSimSprites/MainHouse.png", window);
     this->window = window;

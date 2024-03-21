@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 
-/// Slaughter me
 // very very bare bones right now just for the demo
 class Listener {
     public:
