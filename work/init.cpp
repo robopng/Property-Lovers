@@ -1,6 +1,18 @@
 #include "sim_showrunner.hpp"
-#include <SFML/Window>
+#include <SFML/Graphics.hpp>
 
-int main(int argc, char* argv[]) { 
+using namespace sf;
 
+int main(int argc, char* argv[]) {
+
+  VideoMode vm(960, 540);
+  RenderWindow window(vm, "Window")
+
+  Showrunner showrunner(date, &window);
+
+  showrunner.start();
+
+  }
+
+  return 0;
 }
