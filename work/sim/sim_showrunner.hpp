@@ -23,4 +23,11 @@ class Showrunner {
         sf::RenderWindow* window;
         SimRender* background;
         SimRender* npc;
+
+        // Set coords for dialog
+        int dialogX;
+        int dialogY;
+        // Set coords for sprites
+        int spriteX;
+        int spriteY;
 };
