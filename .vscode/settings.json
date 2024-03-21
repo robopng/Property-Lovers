@@ -2,6 +2,7 @@
     "files.associations": {
         "vector": "cpp",
         "xstring": "cpp",
+        "charconv": "cpp",
         "algorithm": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
@@ -17,6 +18,7 @@
         "cstring": "cpp",
         "ctime": "cpp",
         "cwchar": "cpp",
+        "format": "cpp",
         "deque": "cpp",
         "exception": "cpp",
         "fstream": "cpp",
