@@ -1,17 +1,27 @@
 #include <vector>
 #include <string>
+#include <sstream>
+#include <map>
 
 class DialogController{
     public:
-        DialogController(std::string path); // constructor
+        DialogController(std::string, std::string); // constructor
         ~DialogController(); // destructor 
-        std::string next(); // get next dialog line
-        std::string jump(int); // jump to a specific dialog line given input option
-        std::vector<std::string> options(); // get next player dialog options
+        std::string next();
+        std::string jump(int);
+        std::vector<std::string> options();
+        bool await();
     private:
+        // potential optimizations: transform fullText to stringstream,
+        // transform currentLine to an iterator (w/ fullText as a map)
         struct {
-            std::vector<std::string> fullText;
-            std::vector<std::string>* dialogRecall;
+            std::vector<std::pair<std::string, bool>> fullText;
+            std::vector<std::string> dialogRecall; // nonfunctional 3/21
             int currentLine;
-        } dialogReader, playerReader;
+        } *dialogReader;
+        struct {
+            std::vector<std::vector<std::pair<std::string, int>>> fullText;
+            std::vector<std::string> dialogRecall; // nonfunctional 3/21
+            int currentLine;
+        } *playerReader;
 };

@@ -1,5 +1,5 @@
 ["Hows it going?", false]
-["What's your favorite color?, true]
-["Blue? Nice.", false]
-["Orange? Based.", false]
+["What's your favorite color?, true] true means that we are awaiting input here
+["Blue? Nice.", false] then will jump to one of these depending on the option selected
+["Orange? Based.", false] I'll think of a better way to do this later...
 ["There are a lot of colors to choose from.", false]
