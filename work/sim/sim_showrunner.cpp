@@ -40,6 +40,18 @@ Showrunner::Showrunner(int date, sf::RenderWindow* window){
     background = &SimRender(0, 0, "path/to/background", window);
     npc = &SimRender(0, 0, "../../art/DatingSimSprites/MainHouse.png", window);
     this->window = window;
+    
+    //temp values
+    this->dialogX = 200;
+    this->dialogY = 300;
+    this->spriteX = 100;
+    this->spriteY = 100;
+
+    //temp obj
+    this->dialog->mainHouseRenderer = new SimRender(spriteX, spriteY, "path/to/MainHouse.png", window)
+    //once backgrounds uploaded
+    // this->background = new SimRender(0, 0, "path/to/Neighborhood.png", window)
+    this->mainCharacter = new SimRender(0, 0, "path/to/mc.png", window)
 }
 
 Showrunner::~Showrunner(){
@@ -58,20 +70,20 @@ void Showrunner::start(){
 
         while(window->pollEvent(event)){
             if (!dialog->controller->await()){
-                dialog->npcRenderer->setDialog(0, 0, dialog->controller->next(), 0);
+                dialog->npcRenderer->setDialog(dialogX, dialogY, dialog->controller->next(), 0);
                 break;
             }
 
             for(int i = 0; i < dialog->playerListener.size(); i ++){
                 if (dialog->playerListener.at(i).checkEvent(event)){
-                    dialog->npcRenderer->setDialog(0, 0, dialog->controller->jump(i), 0);
+                    dialog->npcRenderer->setDialog(dialogX, dialogY, dialog->controller->jump(i), 0);
                     break;
                 }
             }
 
             auto options = dialog->controller->options();
             for(int i = 0; i < options.size(); i ++)
-                dialog->playerRenderer.at(i).setDialog(0, 0, options.at(i), 0);
+                dialog->playerRenderer.at(i).setDialog(dialogX, dialogY, options.at(i), 0);
         }
         window->clear();
     }
