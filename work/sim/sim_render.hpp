@@ -24,7 +24,7 @@ using namespace sf;
 class SimRender {
     
     public: //x coord, y coord, file name, window, opacity, scale
-        SimRender(int, int, std::string, Window*, double, double); // constructor
+        SimRender(int, int, std::string, Window*); // constructor
         ~SimRender(); // deconstructor
         void render();
         void removeRender();
@@ -32,16 +32,14 @@ class SimRender {
         void setScale(double);
         void setCoordinates(int, int);
         void setInvisible(bool);
+        void showDialogue(int, int, std::string, int);
         // Renders NPC model during dating sim    
         
     private:
         std::string fileName;
+        std::string dialogue;
         int x;
         int y;
-        double scale;
-        double opacity;
-        bool invisible;
-
 
 
 };
