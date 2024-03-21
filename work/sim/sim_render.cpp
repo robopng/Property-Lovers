@@ -1,12 +1,8 @@
-#include <vector>
-#include <string>
-#include <SFML/Graphics.hpp>
-#include "sim_render.hpp"
-
 using namespace sf;
 /**
  * @file sim_render.cpp
- * @author Layla Payton tpayton1@luc.edu
+ * @author Celeste Payton tpayton1@luc.edu
+ * @author Liam Wilson lwilson18@luc.edu
  * @brief Rendering and (static) display for the dating sim implemented with SFML
  * @version 0.0
  * @date 2024-03-17
@@ -17,6 +13,12 @@ using namespace sf;
  *    implementation of this that you prefer.
  *  - Figure out how the art files should be stored in src to meet your needs here
  */
+
+#include <vector>
+#include <string>
+#include <SFML/Graphics.hpp>
+#include "sim_render.hpp"
+
 // Just input 1 and 1 for scale and opacity for now
 SimRender::SimRender(int x, int y, std::string FileName, RenderWindow* window) {
     this->window = window;

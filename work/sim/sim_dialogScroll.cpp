@@ -1,6 +1,6 @@
 /**
  * @file sim_dialogScroll.cpp
- * @author Ethan Radke eradke1@luc.edu
+ * @author Liam Wilson lwilson18@luc.edu
  * @brief Dialog logic and flow control for the dating sim
  * @version 0.0
  * @date 2024-03-17
