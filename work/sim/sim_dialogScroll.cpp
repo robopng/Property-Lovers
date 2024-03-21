@@ -117,5 +117,8 @@ bool DialogController::await(){
 }
 
 bool DialogController::hasNext(){
+    /**
+     * @brief Return whether or not there is more dialog remaining to be read
+     */
     return dialogReader->currentLine < dialogReader->fullText.size();
 }
