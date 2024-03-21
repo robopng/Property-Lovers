@@ -10,21 +10,9 @@ using namespace sf;
  *  - Figure out how the art files should be stored in src to meet your needs here
  */
 
-
-
-/*
- *  class sim_render:
- *      contains subclasses for various types of image displays
- *      
- *
- *
- */
-
-
 class SimRender {
-    
     public: //x coord, y coord, file name, window, opacity, scale
-        SimRender(int, int, std::string, Window*); // constructor
+        SimRender(int, int, std::string, RenderWindow*); // constructor
         ~SimRender(); // deconstructor
         void render();
         void removeRender();
@@ -34,12 +22,11 @@ class SimRender {
         void setInvisible(bool);
         void showDialogue(int, int, std::string, int);
         // Renders NPC model during dating sim    
-        
     private:
+        Sprite sprite;
+        RenderWindow* window;
         std::string fileName;
         std::string dialogue;
         int x;
         int y;
-
-
 };
