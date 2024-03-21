@@ -65,9 +65,9 @@ std::string DialogController::jump(int choice){  // 0, 1, 2
     // The first element (matches[0]) in REGEX matching response is usually the full string.
     // matches[1] would be the first choice ("9") -- choice 0
     // matches[2] .... choice = 1 ("10")
-    string conversion = matches[choice + 1];
+    std::string conversion = NULL; //matches[choice + 1];
     int newLine = stoi(conversion);
-    dialogReader.currentline = newLine;
+    dialogReader.currentLine = newLine;
     return dialogReader.fullText.at(dialogReader.currentLine);
 }
 

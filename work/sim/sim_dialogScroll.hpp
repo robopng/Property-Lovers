@@ -6,7 +6,7 @@ class DialogController{
         DialogController(std::string path); // constructor
         ~DialogController(); // destructor 
         std::string next(); // get next dialog line
-        std::string jump(); // jump to a specific dialog line given input option
+        std::string jump(int); // jump to a specific dialog line given input option
         std::vector<std::string> options(); // get next player dialog options
     private:
         struct {
