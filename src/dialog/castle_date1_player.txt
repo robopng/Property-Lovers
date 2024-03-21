@@ -1,0 +1,2 @@
+[["Glad to be talking to someone with some history to them, that’s for sure!", 3], ["S-spectacular, thanks! I love your, uh, drawbridge!", 4], ["But of course! I must inquire as to the quality of thine.", 5]]
+[["Can’t go wrong with cabbage soup.", 7], ["Cinnamon rolls! There’s a second stomach for sweets ya know.", 8], ["The classic: A plate full of venison!", 9]]
