@@ -1,0 +1,8 @@
+["Hey! I think we’re from the same neighborhood and I’ve noticed you around. Wow… you look really good today!", true]
+["Ah! Uh, my bad! But there's no need to be aggressive…", false]
+["Haha! You’re funny.", false]
+["You’re welcome!", false]
+["You know, I really like your vibe. You seem really interesting… would you like to go out sometime?", true]
+["O-oh. Well, okay. That's too bad.", false]
+["Fair enough! I'll keep an ear open.", false]
+["Great! See ya later!", false]
