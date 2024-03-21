@@ -20,8 +20,13 @@ class SimRender {
         void setScale(double);
         void setCoordinates(int, int);
         void setInvisible(bool);
+        void showDialogue(int, int, std::string, int);
+        // Renders NPC model during dating sim    
     private:
         Sprite sprite;
         RenderWindow* window;
         std::string fileName;
+        std::string dialogue;
+        int x;
+        int y;
 };
