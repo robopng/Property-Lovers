@@ -7,12 +7,9 @@ int main(int argc, char* argv[]) {
 
   VideoMode vm(960, 540);
   RenderWindow window(vm, "Window")
-
   Showrunner showrunner(date, &window);
 
   showrunner.start();
-
-  }
 
   return 0;
 }
