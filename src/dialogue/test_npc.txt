@@ -1,0 +1,5 @@
+["Hows it going?", false]
+["What's your favorite color?, true"]
+["Blue? Nice.", false]
+["Orange? Based.", false]
+["There are a lot of colors to choose from.", false]
