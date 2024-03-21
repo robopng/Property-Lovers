@@ -18,17 +18,13 @@ using namespace sf;
  *  - Figure out how the art files should be stored in src to meet your needs here
  */
 
-struct {
-    Sprite sprite;
-    Window window;
-    RenderTarget& target;
-} str;
-
-//Just input 1 and 1 for scale and opacity for now
-SimRender::SimRender(int x, int y, std::string FileName, Window* window, double opacity, double scale) {
+// Just input 1 and 1 for scale and opacity for now
+SimRender::SimRender(int x, int y, std::string FileName, RenderWindow* window) {
+    this->window = window;
     sf::Texture texture;
     texture.loadFromFile(FileName);
-    str.sprite.setTexture(texture); 
+    texture.update(*window);
+    sprite.setTexture(texture); 
     setCoordinates(x,y);
     setScale(1);
 }
@@ -37,19 +33,19 @@ SimRender::~SimRender() {
 }
 
 void SimRender::render() {
-    str.target.draw(str.sprite, RenderStates::Default);
+    window->draw(sprite);
 }
 void SimRender::removeRender(){
-    SimRender::~SimRender();
+    window->clear();
 }
 void SimRender::setOpacity(double opacity) {
     //not needed as of 3/20
 }
 void SimRender::setScale(double scale) {
-    str.sprite.setScale(scale, scale);
+    sprite.setScale(scale, scale);
 }
 void SimRender::setCoordinates(int x, int y) {
-    str.sprite.setPosition(x,y);
+    sprite.setPosition(x,y);
 }
 void SimRender::setInvisible(bool isInvisible) {
     //not needed as of 3/20

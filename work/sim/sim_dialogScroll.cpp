@@ -51,7 +51,7 @@ DialogController::DialogController(std::string npcPath, std::string playerPath){
         std::smatch match;
         std::regex expr("\"[A-Z][a-Z,./;'\"?!]+\", \d+");
         std::regex_search(line, match, expr);
-        std::vector<std::pair<std::string, bool>> vec;
+        std::vector<std::pair<std::string, int>> vec;
         for (int i = 0; i < match.length(); i ++){
             // feels like namespace std would be nice but I don't wanna delete all of these...
             std::smatch num;
@@ -114,4 +114,8 @@ bool DialogController::await(){
      */
     // await bool will be the right hand of the pair
     return std::get<1>(dialogReader->fullText.at(dialogReader->currentLine));
+}
+
+bool DialogController::hasNext(){
+    return dialogReader->currentLine < dialogReader->fullText.size();
 }

@@ -11,6 +11,7 @@ class DialogController{
         std::string jump(int);
         std::vector<std::string> options();
         bool await();
+        bool hasNext();
     private:
         // potential optimizations: transform fullText to stringstream,
         // transform currentLine to an iterator (w/ fullText as a map)

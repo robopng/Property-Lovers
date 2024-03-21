@@ -18,18 +18,28 @@
  *     - Close date sequence, progression to next part of game
  */
 
-// #include SFML MOUSE
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 #include "sim_showrunner.hpp"
 #include "sim_dialogScroll.hpp"
 #include "sim_render.hpp"
+#include "sim_listener.hpp"
 
-Showrunner::Showrunner(int date){
+Showrunner::Showrunner(int date, sf::RenderWindow* window){
     // the number of the date will become relevant once we have more than one
-    // render::element background(filepath)
-    // render::element npc(filepath)
-    // this->playerDialog.renderer = render::element()
-    // this->playerDialog.listener = listener::element()
-    // this->dialog->controller = DialogController::DialogController("path");
+    dialog->controller = &DialogController("../../dialog/test_npc.txt", "../../dialog/text_player.txt");
+    auto opt = dialog->controller->options();
+    for each(auto x in dialog->controller->options()){
+        dialog->playerRenderer.push_back(&SimRender::SimRender(0, 0, "dialog", window));
+        dialog->playerListener.push_back(&Listener::Listener());
+    }
+    dialog->npcRenderer = &SimRender(0, 0, "dialog", window);
+    background = &SimRender(0, 0, "path/to/background", window);
+    npc = &SimRender(0, 0, "../../art/DatingSimSprites/MainHouse.png", window);
+    this->window = window;
 }
 
 Showrunner::~Showrunner(){
@@ -42,38 +52,36 @@ Showrunner::~Showrunner(){
 }
 
 void Showrunner::start(){
-    // while(dialog.controller.hasNext()){
-    //     this->renderAll();
-    //     bool await = true;
+    while(dialog->controller->hasNext()){
+        this->renderAll();
+        sf::Event event;
 
-    //     while(await){
-    //         if sfml::mouse.buttonPressed(){
-    //             if (!dialog.controller.await()){
-    //                 dialog.npcRender.content = dialog.controller.next();
-    //                 break;
-    //             }
+        while(window->pollEvent(event)){
+            if (!dialog->controller->await()){
+                dialog->npcRenderer->content = dialog->controller->next();
+                break;
+            }
 
-    //             for(int i = 0; i < dialog.listener.length(); i ++){
-    //                 if dialog.listener.at(i).isPressed(){
-    //                     dialog.npcRender.content = dialog.controller.jump(i);
-    //                     break;
-    //                 }
-    //             }
+            for(int i = 0; i < dialog->playerListener.size(); i ++){
+                if (dialog->playerListener.at(i).isPressed()){
+                    dialog->npcRenderer->content = dialog->controller->jump(i);
+                    break;
+                }
+            }
 
-    //             auto options = dialog.controller.options();
-    //             for(int i = 0; i < options.length(); i ++)
-    //                 dialog.playerRender.at(i).content = options.at(i);
-                    
-    //             await = false;
-    //         }
-    //     }
+            auto options = dialog->controller->options();
+            for(int i = 0; i < options.length(); i ++)
+                dialog->playerRenderer.at(i).content = options.at(i);
+        }
 
-    //     this->derenderAll();
-    // }
-    // this->renderAll();
-    // system.sleep(5000);
-    // this->derenderAll();
-    // this->end();
+        this->derenderAll();
+    }
+    this->renderAll();
+    // SFML bug?
+    // sf::sleep(sf::Time(5));
+    Sleep(5000);
+    this->derenderAll();
+    this->end();
 }
 
 void Showrunner::end(){
@@ -81,17 +89,18 @@ void Showrunner::end(){
 }
 
 void Showrunner::renderAll(){
-    // background.render();
-    // npc.render();
-    // dialog.npcRender.render();
-    // for each(auto element in dialog.playerRender)
-    //     element.render();
+    background->render();
+    npc->render();
+    dialog->npcRenderer->render();
+    for each(auto element in dialog->playerRenderer)
+        element->render();
+    window->display();
 }
 
-void derenderAll(){
-    // background.render();
-    // npc.render();
-    // dialog.npcRender.render();
-    // for each(auto element in dialog.playerRender)
-    //     element.render();
+void Showrunner::derenderAll(){
+    background->removeRender();
+    npc->removeRender();
+    dialog->npcRenderer->removeRender();
+    for each(auto element in dialog->playerRenderer)
+        element->removeRender();
 }
