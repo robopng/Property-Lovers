@@ -103,7 +103,7 @@ std::vector<std::string> DialogController::options(){
      * @brief Return a vector of the player's next available dialog options
      */
     std::vector<std::string> vec;
-    for each (auto pair in playerReader->fullText.at(playerReader->currentLine))
+    for (auto pair : playerReader->fullText.at(playerReader->currentLine))
         vec.push_back(std::get<0>(pair));
     return vec;
 }

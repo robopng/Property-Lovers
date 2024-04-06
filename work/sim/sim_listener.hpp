@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+#include <SFML\Graphics.hpp>
 
 // very very bare bones right now just for the demo
 class Listener {

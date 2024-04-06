@@ -1,7 +1,7 @@
 #include <vector>
 #include <string>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+#include <SFML\Graphics.hpp>
+#include <SFML\Window.hpp>
 
 using namespace sf;
 

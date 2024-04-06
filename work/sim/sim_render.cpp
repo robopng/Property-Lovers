@@ -16,7 +16,7 @@ using namespace sf;
 
 #include <vector>
 #include <string>
-#include <SFML/Graphics.hpp>
+#include <SFML\Graphics.hpp>
 #include "sim_render.hpp"
 
 // Just input 1 and 1 for scale and opacity for now

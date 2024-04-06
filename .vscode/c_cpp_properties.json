@@ -4,10 +4,9 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/lib/SFML-2.6.1/include/SFML",
-                "${workspaceFolder}/lib/SFML-2.6.1/include/SFML/Graphics",
-                "${workspaceFolder}/lib/SFML-2.6.1/include/SFML/Window",
-                "${workspaceFolder}/work/sim"
+                "${workspaceFolder}",
+                "${workspaceFolder}/lib/SFML-2.6.1/include/",
+                "${workspaceFolder}/lib/SFML-2.6.1/include/SFML"
             ],
             "defines": [
                 "_DEBUG",
