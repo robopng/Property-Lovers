@@ -1,3 +1,5 @@
+# pragma once
+
 #include "sim_dialogScroll.hpp"
 #include "sim_render.hpp"
 #include "sim_listener.hpp"

@@ -32,15 +32,15 @@ Showrunner::Showrunner(int date, sf::RenderWindow* window){
     // the number of the date will become relevant once we have more than one
     // if you get Intellisense errors on push_back or the = signs, they are incorrect. ignore
     // a value of type "SimRender *" cannot be assigned to an entity of type "SimRender *" <- nonsense
-    dialog->controller = &DialogController("../../dialog/test_npc.txt", "../../dialog/text_player.txt");
+    dialog->controller = new DialogController("../../dialog/test_npc.txt", "../../dialog/text_player.txt");
     auto opt = dialog->controller->options();
-    for each(auto x in dialog->controller->options()){
-        dialog->playerRenderer.push_back(SimRender::SimRender(window));
-        dialog->playerListener.push_back(Listener::Listener());
+    for(auto x : dialog->controller->options()){
+        dialog->playerRenderer.push_back(new SimRender(window));
+        dialog->playerListener.push_back(new Listener());
     }
-    dialog->npcRenderer = &SimRender(window);
-    background = &SimRender(0, 0, "path/to/background", window);
-    npc = &SimRender(0, 0, "../../art/DatingSimSprites/MainHouse.png", window);
+    dialog->npcRenderer = new SimRender(window);
+    background = new SimRender(0, 0, "path/to/background", window);
+    npc = new SimRender(0, 0, "../../art/DatingSimSprites/MainHouse.png", window);
     // this b/c of ambiguity
     this->window = window;
     
@@ -128,7 +128,7 @@ void Showrunner::renderAll(){
     background->render();
     npc->render();
     dialog->npcRenderer->render();
-    for each(auto element in dialog->playerRenderer)
+    for(auto element : dialog->playerRenderer)
         element.showDialog();
     window->display();
 }

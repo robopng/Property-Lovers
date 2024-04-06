@@ -1,3 +1,5 @@
+# pragma once
+
 #include <SFML\Graphics.hpp>
 
 // very very bare bones right now just for the demo
