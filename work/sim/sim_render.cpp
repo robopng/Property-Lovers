@@ -1,4 +1,3 @@
-using namespace sf;
 /**
  * @file sim_render.cpp
  * @author Celeste Payton tpayton1@luc.edu
