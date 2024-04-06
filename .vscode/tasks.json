@@ -8,8 +8,8 @@
                 "-IC:\\Users\\robop\\Desktop\\the finest files\\Property-Lovers\\lib\\SFML-2.6.1\\include",
                 "-fdiagnostics-color=always",
                 "-g",
-                "${fileDirname}/**.cpp",
-                "${fileDirname}/sim/**.cpp",
+                "${fileDirname}\\**.cpp",
+                "${fileDirname}\\sim\\**.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
