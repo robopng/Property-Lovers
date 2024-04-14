@@ -1,0 +1,9 @@
+{"text":"Wazzaaaaaaah", "more":true, "line":3}
+{"text":"You shouldn't see this.", "more":false, "line":0}
+{"text":"You should see this", "more":false, "line":0}
+{"text":"This, too!", "more":true, "line":6}
+{"text":"Never this!", "more":false, "line":0}
+{"text":"Good work!", "more":true, "line":[7, 8, 9]}
+{"text":"Option 1", "more":false, "line":0}
+{"text":"Option 2", "more":false, "line":0}
+{"text":"Option 3", "more":false, "line":0}
